@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'app_platforms',
     'app_delivery',
+    'app_engulf',
 ]
 
 MIDDLEWARE = [

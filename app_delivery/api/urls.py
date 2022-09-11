@@ -2,7 +2,7 @@ from django.urls import path
 from app_delivery.api import views
 
 urlpatterns = [
-    path('', views.fetch_delivery_percentage,name='get_sbi_delivery')
+    path('', views.fetch_delivery_percentage,name='get_custom_delivery')
     # ex: /polls/
     # path('', views.list_post_platforms, name='list_post_platforms'),
     # ex: /polls/5/

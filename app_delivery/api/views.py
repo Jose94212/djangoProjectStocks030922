@@ -29,13 +29,12 @@ def fetch_share_details(symbol=share_symbols):
     # checkiftisweekend
     days_to_minus = 0
     delivery_percentage = None
-    print("\n*****************8")
 
     if date.today().strftime("%A") == "Saturday":
         days_to_minus = 1
     elif date.today().strftime("%A") == "Sunday":
         days_to_minus = 2
-    elif date.today().weekday() and datetime.now().strftime("%H:%M:%S")<"17:00:00":
+    elif (date.today().weekday() and datetime.now().strftime("%H:%M:%S")<"19:00:00"):
         days_to_minus = 1
 
     # fetching all symbols details
