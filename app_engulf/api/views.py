@@ -66,14 +66,17 @@ def fetch_bullish_shares():
         for symbol in symbolss:
             if symbol not in penny_stocks:
                 try:
+                    print("checking symbol:",symbol)
                     days_to_minus = check_weekend()
 
                     # start=a day before the current date
                     # end = current date
-                    data = get_history(symbol, start=date.today() -
-                                        timedelta(days=days_to_minus+1),
-                                        end=date.today()-timedelta(days=days_to_minus))
-
+                    try:
+                        data = get_history(symbol, start=date.today() -
+                                            timedelta(days=days_to_minus+1),
+                                            end=date.today()-timedelta(days=days_to_minus))
+                    except Exception:
+                        print("chill!!!")
                     previous_today_low = fetch_previous_today(data["Low"])
                     previous_today_high = fetch_previous_today(data["High"])
                     previous_today_close = fetch_previous_today(data["Close"])
@@ -88,7 +91,7 @@ def fetch_bullish_shares():
                         print("Syombol=%s bull engulf" % symbol)
                         response_engulfing.append(symbol)
                 except Exception:
-                    pass
+                    print("chill2!!!")
     else:
         raise Exception("\npenny_stocks is none or empty")
     return response_engulfing
