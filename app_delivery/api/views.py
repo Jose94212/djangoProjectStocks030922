@@ -38,6 +38,7 @@ def fetch_delivery_greater_than_yesterday(request):
         data = fetch_share_details()
         return Response(data=identify_delivery_greater_than_yesterday(data),
                 status=status.HTTP_200_OK)
+                
 @api_view(['GET'])
 def fetch_custom_shares_delivery_greater_than_yesterday(request):
     if request.method == 'GET':
@@ -85,9 +86,14 @@ def fetch_share_details(symboll=None):
 
     # fetching all symbols details
     all_symbol_details = []
+    is_today_monday= True if date.today().strftime("%A") == "Monday" else False
     for i in symboll:
-        data = get_history(i, start=date.today()-timedelta(days=days_to_minus+1),
+        if is_today_monday:
+            data = get_history(i, start=date.today()-timedelta(days=days_to_minus+3),
                            end=date.today()-timedelta(days=days_to_minus))
+        else:
+            data = get_history(i, start=date.today()-timedelta(days=days_to_minus+1),
+                            end=date.today()-timedelta(days=days_to_minus))
 
         dict_details = dict()
         temp_dict_date = dict()
